@@ -41,7 +41,7 @@ if __name__ == "__main__":
     tf.random.set_seed(42)
     create_dir("/content/drive/MyDrive/results_kvasir_large/")
     ## Dataset
-    test_path = "/content/kvasir_augmented/test/"
+    test_path = "/content/clinic_augmented/test/"
     batch_size = 6
 
     test_x = sorted(glob(os.path.join(test_path, "images/*")))
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     if len(test_x) % batch_size != 0:
         test_steps += 1
 
-    model = load_model_weight("/content/drive/MyDrive/files_kvasir_large/model.h5")
+    model = load_model_weight("/content/drive/MyDrive/files_clinic_d_attention/model.h5")
 
 
     model.compile(loss=dice_loss, optimizer=tf.keras.optimizers.Nadam(lr), metrics=['acc',Recall(),Precision(),dice_coef, MeanIoU(num_classes=2)])
@@ -73,4 +73,4 @@ if __name__ == "__main__":
             mask_parse(y_pred) * 255.0
         ]
         image = np.concatenate(all_images, axis=1)
-        cv2.imwrite(f"/content/drive/MyDrive/files_kvasir_large/{i}.jpg", image)
+        cv2.imwrite(f"/content/drive/MyDrive/files_clinic_d_attention/{i}.jpg", image)
