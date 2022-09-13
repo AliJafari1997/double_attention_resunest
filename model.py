@@ -257,7 +257,6 @@ def build_model(input_shape):
 
     ## Bridge
     b1 = dual_attention(e4)
-    b1 = b1 + e4
     b2 = dual_attention(b1)
     b2 = b1 + b2
 
