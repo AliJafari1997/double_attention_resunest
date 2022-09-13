@@ -21,8 +21,8 @@ if __name__=='__main__':
     np.random.seed(42)
     tf.random.set_seed(42)
 
-    train_path = "/content/kvasir_augmented/train/"
-    valid_path = "/content/kvasir_augmented/valid/"
+    train_path = "/content/clinic_augmented/train/"
+    valid_path = "/content/clinic_augmented/valid/"
     
     ## Training
     train_x = sorted(glob(os.path.join(train_path, "images/*")))
@@ -35,7 +35,7 @@ if __name__=='__main__':
     valid_x = sorted(glob(os.path.join(valid_path, "images/*")))
     valid_y = sorted(glob(os.path.join(valid_path, "masks/*")))
 
-    model_path='/content/drive/MyDrive/files_kvasir_large/model.h5'
+    model_path='/content/drive/MyDrive/files_clinic_d_attention/model.h5'
     batch_size = 
     epochs = 50
     lr = 1e-4
@@ -50,7 +50,7 @@ if __name__=='__main__':
 
     callbacks = [
         ModelCheckpoint(model_path),
-        CSVLogger("/content/drive/MyDrive/files_kvasir_large/data.csv",append=True),
+        CSVLogger("/content/drive/MyDrive/files_clinic_d_attention/data.csv",append=True),
         TensorBoard(),
         ReduceLROnPlateau(monitor='val_loss', factor=0.25, patience=5, min_lr=1e-6, verbose=1),
         EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=False)
@@ -66,7 +66,7 @@ if __name__=='__main__':
     if len(valid_x) % batch_size != 0:
         valid_steps += 1
 
-    model = load_model_weight("/content/drive/MyDrive/files_kvasir_large/model.h5")
+    model = load_model_weight("/content/drive/MyDrive/files_clinic_d_attention/model.h5")
 
     model.compile(loss=dice_loss, optimizer=Nadam(lr), metrics=metrics)
 
