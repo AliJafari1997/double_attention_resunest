@@ -272,16 +272,16 @@ def load_data(path,split=0.1):
 if __name__ == "__main__":
     """ Loading original images and masks. """
     np.random.seed(42)
-    path = "/content/Kvasir-SEG/"
+    path = "/content/clinic/"
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data(path, split=0.1)
 
-    create_dir("/content/kvasir_augmented/train/images/")
-    create_dir("/content/kvasir_augmented/train/masks/")
-    create_dir("/content/kvasir_augmented/valid/images/")
-    create_dir("/content/kvasir_augmented/valid/masks/")
-    create_dir("/content/kvasir_augmented/test/images/")
-    create_dir("/content/kvasir_augmented/test/masks/")
+    create_dir("/content/clinic_augmented/train/images/")
+    create_dir("/content/clinic_augmented/train/masks/")
+    create_dir("/content/clinic_augmented/valid/images/")
+    create_dir("/content/clinic_augmented/valid/masks/")
+    create_dir("/content/clinic_augmented/test/images/")
+    create_dir("/content/clinic_augmented/test/masks/")
 
-    augment_data(train_x, train_y, "/content/kvasir_augmented/train/", augment=True)
-    augment_data(valid_x, valid_y, "/content/kvasir_augmented/valid/", augment=False)
-    augment_data(test_x, test_y, "/content/kvasir_augmented/test/", augment=False)
+    augment_data(train_x, train_y, "/content/clinic_augmented/train/", augment=True)
+    augment_data(valid_x, valid_y, "/content/clinic_augmented/valid/", augment=False)
+    augment_data(test_x, test_y, "/content/clinic_augmented/test/", augment=False)
